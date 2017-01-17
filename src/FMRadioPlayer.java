@@ -10,7 +10,11 @@ import javax.swing.*;
  * 5.you can play\pause\jump songs you are playing
  */
 public class FMRadioPlayer extends JFrame {
-    //init controls
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5474637165603916178L;
+	//init controls
     public void init(){
 
     }

@@ -6,16 +6,23 @@ import java.net.URL;
  */
 public class AudioPlayer implements ControllerListener { // ControllerListener // 控制事件
     private Player player;
-    AudioPlayer(URL srcurl) {
-    	try {
-    		player = Manager.createRealizedPlayer(srcurl);
-    	} catch(javax.media.CannotRealizeException ex) {
+    private UrlProvider provider;
+    AudioPlayer(UrlProvider urlprovider) {
+        provider = urlprovider;
+        createPlayer();
+    }
+
+    private void createPlayer() {
+        try {
+            player = Manager.createRealizedPlayer(provider.getNextUrl());
+        } catch (CannotRealizeException ex) {
             System.out.println("Cannot Realize");
-        } catch(NoPlayerException ex) {
+        } catch (NoPlayerException ex) {
             System.out.println("No Player");
-        } catch(IOException ex) {
+        } catch (IOException ex) {
         }
     }
+
     public void start() {
         if (player == null) {
             return;
@@ -23,8 +30,17 @@ public class AudioPlayer implements ControllerListener { // ControllerListener /
         player.addControllerListener(this);
         player.prefetch();
     }
+    public void stop(){
+        if(player==null){
+            return;
+        }
+        player.stop();
+    }
     public void controllerUpdate(ControllerEvent e) {
         if (e instanceof EndOfMediaEvent) {
+            player.deallocate();
+            createPlayer();
+            this.start();
             return;
         }
         if (e instanceof PrefetchCompleteEvent) {

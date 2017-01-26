@@ -1,17 +1,20 @@
 import java.net.URL;
+import java.util.LinkedList;
 
 /**
  * Created by Wang on 2017/1/19.
  */
 public class UrlProvider {
-    private URL audioFileUrl;
-    public UrlProvider(URL url){
-        audioFileUrl = url;
+    private LinkedList<URL> audioFileUrl;
+    public UrlProvider(){
+        audioFileUrl = new LinkedList<URL>();
     }
-    public void setNextUrl(URL url){
-        audioFileUrl = url;
+    public void addNextUrl(URL url){
+        audioFileUrl.push(url);
     }
     public URL getNextUrl(){
-        return audioFileUrl;
+        if(audioFileUrl.isEmpty())
+            return null;
+        return audioFileUrl.pop();
     }
 }

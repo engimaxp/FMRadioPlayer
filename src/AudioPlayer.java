@@ -7,11 +7,11 @@ import java.net.URL;
 public class AudioPlayer implements ControllerListener { // ControllerListener // 控制事件
     private Player player;
     private UrlProvider provider;
+    private boolean paused;
     AudioPlayer(UrlProvider urlprovider) {
         provider = urlprovider;
-        createPlayer();
+        paused = false;
     }
-
     private void createPlayer() {
         try {
             player = Manager.createRealizedPlayer(provider.getNextUrl());
@@ -22,10 +22,24 @@ public class AudioPlayer implements ControllerListener { // ControllerListener /
         } catch (IOException ex) {
         }
     }
-
+    private Time resume;
+    public void pause(){
+        if(player == null) {
+            return;
+        }
+        if(paused){
+            player.setMediaTime(resume);
+            player.start();
+            paused = false;
+        } else {
+            resume = player.getMediaTime();
+            player.stop();
+            paused = true;
+        }
+    }
     public void start() {
         if (player == null) {
-            return;
+            createPlayer();
         }
         player.addControllerListener(this);
         player.prefetch();
@@ -39,7 +53,7 @@ public class AudioPlayer implements ControllerListener { // ControllerListener /
     public void controllerUpdate(ControllerEvent e) {
         if (e instanceof EndOfMediaEvent) {
             player.deallocate();
-            createPlayer();
+            player = null;
             this.start();
             return;
         }

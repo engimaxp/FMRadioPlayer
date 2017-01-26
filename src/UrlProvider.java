@@ -6,6 +6,7 @@ import java.util.LinkedList;
  */
 public class UrlProvider {
     private LinkedList<URL> audioFileUrl;
+    private URL currentURL;
     public UrlProvider(){
         audioFileUrl = new LinkedList<URL>();
     }
@@ -15,6 +16,7 @@ public class UrlProvider {
     public URL getNextUrl(){
         if(audioFileUrl.isEmpty())
             return null;
-        return audioFileUrl.pop();
+        currentURL = audioFileUrl.pop();
+        return currentURL;
     }
 }

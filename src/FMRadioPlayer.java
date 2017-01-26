@@ -1,14 +1,14 @@
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
-
 /**
  * Created by Wang on 2017/1/15.
  * A FMRadio Player Can Choose Songs From the DBFMRadio
@@ -84,8 +84,19 @@ public class FMRadioPlayer extends JFrame {
 
     //reading local document
     private AudioPlayer player;
-    public void start(){
-
+    public void start() throws MalformedURLException {
+        String radioUrl = String.format("http://douban.fm/j/mine/playlist?type=n&channel={0}&from=mainsite",20);
+        URL url = new URL(radioUrl);
+//        try (InputStream is = url.openStream(); JsonReader rdr = Json.createReader(is)) {
+//                 JsonObject obj = rdr.readObject();
+//                 JsonArray results = obj.getJsonArray("data");
+//                 for (JsonObject result : results.getValuesAs(JsonObject.class)) {
+//                        System.out.print(result.getJsonObject("from").getString("name"));
+//                        System.out.print(": ");
+//                         System.out.println(result.getString("message", ""));
+//                         System.out.println("-----------");
+//                     }
+//             }
     }
 
     private ImageIcon getImageIcon(String path, int width, int height) {

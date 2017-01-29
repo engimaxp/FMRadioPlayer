@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FMRadio">
+    <output-path>$PROJECT_DIR$/out/artifacts/FMRadio</output-path>
+    <root id="archive" name="FMRadio.jar">
+      <element id="module-output" name="FMRadioPlayer" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

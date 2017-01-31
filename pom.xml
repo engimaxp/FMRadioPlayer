@@ -20,27 +20,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>org.codehaus.mojo</groupId>-->
-            <!--<artifactId>exec-maven-plugin</artifactId>-->
-            <!--<version>1.5.0</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>exec</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<executable>mvn</executable>-->
-                    <!--&lt;!&ndash; optional &ndash;&gt;-->
-                    <!--<workingDirectory>D:\Program Files\apache-maven-3.3.9\bin</workingDirectory>-->
-                    <!--<arguments>-->
-                        <!--<argument>-X</argument>-->
-                        <!--<argument>myproject:dist</argument>-->
-                    <!--</arguments>-->
-                <!--</configuration>-->
-        <!--</plugin>-->
         </plugins>
     </build>
     <dependencies>
@@ -51,11 +30,11 @@
             <version>2.8.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.media/jmf -->
-        <!--<dependency>-->
-            <!--<groupId>javax.media</groupId>-->
-            <!--<artifactId>jmf</artifactId>-->
-            <!--<version>2.1.1e</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>javax.media</groupId>
+            <artifactId>jmf</artifactId>
+            <version>2.1.1e</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -68,17 +47,5 @@
             <artifactId>fluent-hc</artifactId>
             <version>4.5.2</version>
         </dependency>
-        <dependency>
-            <groupId>uk.co.caprica</groupId>
-            <artifactId>vlcj</artifactId>
-            <version>3.10.1</version>
-        </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>FMRadioPlayer</id>
-            <name>wang</name>
-            <url>http://127.0.0.1:8081/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 </project>

@@ -21,12 +21,15 @@ public class AudioPlayer implements ControllerListener,Subject { // ControllerLi
             URL url = provider.getNextUrl();
             if(url == null) return;
         try {
-            player = Manager.createRealizedPlayer(provider.getNextUrl());
+            player = Manager.createRealizedPlayer(url);
+            player.addControllerListener(this);
+            player.prefetch();
         } catch (CannotRealizeException ex) {
             System.out.println("Cannot Realize");
         } catch (NoPlayerException ex) {
             System.out.println("No Player");
         } catch (IOException ex) {
+            System.out.println("IO Wrong");
         }
     }
     private Time resume;

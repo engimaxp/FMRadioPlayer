@@ -7,21 +7,28 @@ import java.io.IOException;
 import java.util.List;
 
 public class MusicRadio {
-    private String r;
-    private String is_show_quick_start;
-    private List<Music> song;
+    private MusicResult result;
+    private String code;
+    private String message;
 
-    public List<Music> getSong() {
-        return song;
+    private int currentPlay=0;
+
+    public List<Music> getSongs() {
+        return result.getTracks();
     }
-    public static Music getASong() throws Exception {
+    public Music getASong() throws Exception {
         Music playmusic = new Music();
         try{
-            String radioUrl = String.format("http://douban.fm/j/mine/playlist?type=n&channel=%d&from=mainsite",1);
-            String json = Request.Get(radioUrl).execute().returnContent().asString();
-            Gson gson = new Gson();
-            MusicRadio jsonObj = gson.fromJson(json, MusicRadio.class);
-            playmusic = jsonObj.getSong().get(0);
+            if (result == null || currentPlay > result.getTracks().size()) {
+                String radioUrl = String.format("http://music.163.com/api/playlist/detail?id=%d",37880978);
+                String json = Request.Get(radioUrl).execute().returnContent().asString();
+                Gson gson = new Gson();
+                MusicRadio jsonObj = gson.fromJson(json, MusicRadio.class);
+                result = jsonObj.result;
+                currentPlay = 0;
+            }
+            playmusic = this.getSongs().get(currentPlay);
+            currentPlay++;
         } catch (IOException e) {
             throw new Exception("Parse Json Wrong");
         }

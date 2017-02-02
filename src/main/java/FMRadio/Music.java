@@ -5,30 +5,19 @@ package FMRadio;
  *
  */
 public class Music {
-    private String albumtitle;
-    private String url;
-    private String picture;
-    private String title;
-    private String artist;
-
-    public String getAlbumtitle() {
-        return albumtitle;
+    private String mp3Url;
+    private String name;
+    private Album album;
+    public String getMp3Url() {
+        return mp3Url;
     }
 
-    public String getUrl() {
-        return url;
+    public String getName() {
+        return name;
     }
 
-    public String getPicture() {
-        return picture;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getArtist() {
-        return artist;
+    public Album getAlbum() {
+        return album;
     }
 }
 

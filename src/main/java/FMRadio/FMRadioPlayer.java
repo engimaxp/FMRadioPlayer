@@ -86,6 +86,7 @@ public class FMRadioPlayer extends JFrame implements Observer{
     //reading local document
     private AudioPlayer player;
     private UrlProvider provider= new UrlProvider();
+    private MusicRadio musicRadio = new MusicRadio();
     public void start() {
         Music song = getNextSong();
         player = new AudioPlayer(provider);
@@ -96,12 +97,12 @@ public class FMRadioPlayer extends JFrame implements Observer{
     private Music getNextSong() {
         Music song = new Music();
         try {
-            song = MusicRadio.getASong();
+            song = musicRadio.getASong();
         } catch (Exception e) {
             statusText.setText(e.getMessage());
         }
         try {
-            provider.addNextUrl(new URL(song.getUrl()));
+            provider.addNextUrl(new URL(song.getMp3Url()));
         } catch (MalformedURLException e) {
             statusText.setText("songs address is unreachable");
         }
